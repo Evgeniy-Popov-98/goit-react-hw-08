@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
@@ -6,7 +5,6 @@ import { addContact } from "../../redux/contactsOps";
 
 import clsx from "clsx";
 import css from "./RegistrationForm.module.css";
-
 const FORM_INITIAL_VALUES = { name: "", password: "" };
 
 const mailBoxSchema = Yup.object().shape({
