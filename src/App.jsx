@@ -18,6 +18,11 @@ const NotFoudPage = lazy(() => import("./pages/NotFoudPage/NotFoudPage"));
 import "./App.css";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
   return (
     <Layout>
       <Routes>

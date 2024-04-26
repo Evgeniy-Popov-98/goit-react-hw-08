@@ -13,6 +13,8 @@ const ContactList = () => {
   const errorMessenger = useSelector((state) => state.contacts.error);
   const filteredContacts = useSelector(selectFilteredContacts);
 
+  console.log(filteredContacts);
+
   return (
     <>
       {loading && <Loader />}
