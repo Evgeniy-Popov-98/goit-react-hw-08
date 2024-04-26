@@ -1,6 +1,6 @@
 import { lazy, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchContacts } from "./redux/contactsOps";
+import { fetchContacts } from "./redux/contacts/operations";
 import { Route, Routes } from "react-router-dom";
 
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
