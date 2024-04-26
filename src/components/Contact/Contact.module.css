@@ -1,0 +1,32 @@
+.contactBox {
+  width: 230px;
+  height: 60px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: rgb(79, 80, 82);
+  border: 1px solid #fff;
+  border-radius: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contactList {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.contactItem {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contactButton {
+  border: 1px solid #fff;
+  border-radius: 8px;
+  padding: 6px;
+  cursor: pointer;
+}
