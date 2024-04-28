@@ -1,9 +1,11 @@
 import { useSelector } from "react-redux";
 import { selectFilteredContacts } from "../../redux/contacts/slice";
 
+import ContactForm from "../../components/ContactForm/ContactForm";
+import SearchBox from "../../components/SearchBox/SearchBox";
+import Contact from "../../components/Contact/Contact";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessenger from "../../components/ErrorMessenger/ErrorMessenger";
-import Contact from "../../components/Contact/Contact";
 
 import clsx from "clsx";
 import css from "./ContactsPage.module.css";
@@ -15,6 +17,8 @@ const ContactList = () => {
 
   return (
     <>
+      <ContactForm />
+      <SearchBox />
       {loading && <Loader />}
       {errorMessenger && <ErrorMessenger />}
       <ul className={clsx(css.contactsList)}>

@@ -2,7 +2,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/operations";
+import { apiLogin } from "../../redux/auth/operations";
 
 import clsx from "clsx";
 import css from "./LoginForm.module.css";
@@ -19,11 +19,9 @@ const mailBoxSchema = Yup.object().shape({
 });
 
 const LoginForm = () => {
-  const dispatch = useDispatch(); //!!!!!!!!
-
-  const onAddContact = (values, actions) => {
-    dispatch(addContact(values));
-
+  const dispatch = useDispatch();
+  const handleSubmit = (values, actions) => {
+    dispatch(apiLogin(values));
     actions.resetForm();
   };
 
@@ -31,7 +29,7 @@ const LoginForm = () => {
     <Formik
       initialValues={FORM_INITIAL_VALUES}
       validationSchema={mailBoxSchema}
-      onSubmit={onAddContact}
+      onSubmit={handleSubmit}
     >
       <Form className={clsx(css.boxForm)}>
         <label className={clsx(css.labelForm)}>

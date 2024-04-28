@@ -1,11 +1,12 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/operations";
+import { apiRegister } from "../../redux/auth/operations";
 
 import clsx from "clsx";
 import css from "./RegistrationForm.module.css";
-const FORM_INITIAL_VALUES = { name: "", password: "" };
+
+const FORM_INITIAL_VALUES = { name: "", email: "", password: "" };
 
 const mailBoxSchema = Yup.object().shape({
   name: Yup.string()
@@ -21,11 +22,9 @@ const mailBoxSchema = Yup.object().shape({
 });
 
 const RegistrationForm = () => {
-  const dispatch = useDispatch(); //!!!!!!!!
-
-  const onAddContact = (values, actions) => {
-    dispatch(addContact(values));
-
+  const dispatch = useDispatch();
+  const handleSubmit = (values, actions) => {
+    dispatch(apiRegister(values));
     actions.resetForm();
   };
 
@@ -33,7 +32,7 @@ const RegistrationForm = () => {
     <Formik
       initialValues={FORM_INITIAL_VALUES}
       validationSchema={mailBoxSchema}
-      onSubmit={onAddContact}
+      onSubmit={handleSubmit}
     >
       <Form className={clsx(css.boxForm)}>
         <label className={clsx(css.labelForm)}>
