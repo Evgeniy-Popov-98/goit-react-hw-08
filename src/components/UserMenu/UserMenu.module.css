@@ -1,0 +1,19 @@
+.userContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.userText {
+  font-size: 20px;
+}
+
+.logoutBtn {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #fff;
+  border-radius: 6px;
+  background-color: #ffffff81;
+  cursor: pointer;
+}

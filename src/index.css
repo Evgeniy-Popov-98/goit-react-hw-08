@@ -12,3 +12,16 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+a {
+  text-decoration: none;
+}
+
+body {
+  margin-top: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
