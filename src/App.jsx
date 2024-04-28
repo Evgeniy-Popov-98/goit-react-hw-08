@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
 import Layout from "./components/Layout/Layout";
-import { apiRefreshUser } from "./redux/auth/operations";
+import { refreshUser } from "./redux/auth/operations";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const RegistrationPage = lazy(() =>
@@ -21,7 +21,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(apiRefreshUser());
+    dispatch(refreshUser());
   }, [dispatch]);
   return (
     <Layout>

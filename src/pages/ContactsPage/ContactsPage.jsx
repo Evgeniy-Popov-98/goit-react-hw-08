@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectFilteredContacts } from "../../redux/contacts/slice";
 import { isError, isLoading } from "../../redux/contacts/selectors";
 
@@ -10,12 +10,18 @@ import ErrorMessenger from "../../components/ErrorMessenger/ErrorMessenger";
 
 import clsx from "clsx";
 import css from "./ContactsPage.module.css";
+import { useEffect } from "react";
+import { fetchContacts } from "../../redux/contacts/operations";
 
 const ContactList = () => {
+  const dispatch = useDispatch();
   const loading = useSelector(isLoading);
   const errorMessenger = useSelector(isError);
   const filteredContacts = useSelector(selectFilteredContacts);
 
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
   return (
     <>
       <ContactForm />

@@ -47,7 +47,7 @@ export const refreshUser = createAsyncThunk(
 
       setToken(token);
       const { data } = await instance.get("/users/current");
-
+      console.log(data);
       return data;
     } catch (e) {
       return thunkApi.rejectWithValue(e.message);

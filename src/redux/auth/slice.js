@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 
-import { apiRegister, apiLogin, apiRefreshUser, apiLogout } from "./operations";
+import { register, login, refreshUser, logout } from "./operations";
 
 const INITAL_STATE = {
   user: {
@@ -16,33 +16,34 @@ const authSlice = createSlice({
   initialState: INITAL_STATE,
   extraReducers: (builder) =>
     builder
-      .addCase(apiRegister.fulfilled, (state, action) => {
+      .addCase(register.fulfilled, (state, action) => {
         // state.isLoading = false;
         state.isLoggedIn = true;
         state.user = action.payload.user;
         state.token = action.payload.token;
       })
-      .addCase(apiLogin.fulfilled, (state, action) => {
+      .addCase(login.fulfilled, (state, action) => {
         // state.isLoading = false;
         state.isLoggedIn = true;
         state.user = action.payload.user;
         state.token = action.payload.token;
       })
-      .addCase(apiRefreshUser.fulfilled, (state, action) => {
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        console.log(action.payload);
         // state.isLoading = false;
         state.isLoggedIn = true;
         state.user = action.payload;
       })
-      .addCase(apiLogout.fulfilled, () => {
+      .addCase(logout.fulfilled, () => {
         return INITAL_STATE;
       })
 
       .addMatcher(
         isAnyOf(
-          apiRegister.pending,
-          apiLogin.pending,
-          apiRefreshUser.pending,
-          apiLogout.pending
+          register.pending,
+          login.pending,
+          refreshUser.pending,
+          logout.pending
         ),
         (state) => {
           state.isLoading = true;
@@ -51,10 +52,10 @@ const authSlice = createSlice({
       )
       .addMatcher(
         isAnyOf(
-          apiRegister.rejected,
-          apiLogin.rejected,
-          apiRefreshUser.rejected,
-          apiLogout.rejected
+          register.rejected,
+          login.rejected,
+          refreshUser.rejected,
+          logout.rejected
         ),
         (state) => {
           state.isLoading = false;

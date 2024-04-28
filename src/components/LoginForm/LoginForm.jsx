@@ -2,7 +2,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { apiLogin } from "../../redux/auth/operations";
+import { login } from "../../redux/auth/operations";
 
 import clsx from "clsx";
 import css from "./LoginForm.module.css";
@@ -22,7 +22,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const handleSubmit = (values, actions) => {
     console.log(values);
-    dispatch(apiLogin(values));
+    dispatch(login(values));
     actions.resetForm();
   };
 

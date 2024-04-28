@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { apiLogout } from "../../redux/auth/operations";
+import { logout } from "../../redux/auth/operations";
 import { selectUser } from "../../redux/auth/selectors";
 
 import clsx from "clsx";
@@ -14,7 +14,7 @@ export const UserMenu = () => {
       <button
         className={clsx(style.logoutBtn)}
         type="button"
-        onClick={() => dispatch(apiLogout())}
+        onClick={() => dispatch(logout())}
       >
         Logout
       </button>
