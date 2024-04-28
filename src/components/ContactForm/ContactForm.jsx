@@ -2,6 +2,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
+import toast, { Toaster } from "react-hot-toast";
 import { addContact } from "../../redux/contacts/operations";
 
 import clsx from "clsx";
@@ -27,43 +28,47 @@ const ContactForm = () => {
   const dispatch = useDispatch();
 
   const onAddContact = (values, actions) => {
+    console.log(true);
+    toast.success("Contact added successfully!");
     dispatch(addContact(values));
-
     actions.resetForm();
   };
 
   return (
-    <Formik
-      initialValues={FORM_INITIAL_VALUES}
-      validationSchema={mailBoxSchema}
-      onSubmit={onAddContact}
-    >
-      <Form className={clsx(css.boxForm)}>
-        <label className={clsx(css.labelForm)}>
-          <span className={clsx(css.labelSpan)}>Name</span>
-          <Field
-            className={clsx(css.labelInput)}
-            type="text"
-            name="name"
-            placeholder="Your name"
-          />
-          <ErrorMessage component="p" name="name" />
-        </label>
-        <label className={clsx(css.labelForm)}>
-          <span className={clsx(css.labelSpan)}>Number</span>
-          <Field
-            className={clsx(css.labelInput)}
-            type="tel"
-            name="number"
-            placeholder="123-45-67"
-          />
-          <ErrorMessage component="p" name="number" />
-        </label>
-        <button className={clsx(css.formButton)} type="submit">
-          Add new contact
-        </button>
-      </Form>
-    </Formik>
+    <>
+      <Formik
+        initialValues={FORM_INITIAL_VALUES}
+        validationSchema={mailBoxSchema}
+        onSubmit={onAddContact}
+      >
+        <Form className={clsx(css.boxForm)}>
+          <label className={clsx(css.labelForm)}>
+            <span className={clsx(css.labelSpan)}>Name</span>
+            <Field
+              className={clsx(css.labelInput)}
+              type="text"
+              name="name"
+              placeholder="Your name"
+            />
+            <ErrorMessage component="p" name="name" />
+          </label>
+          <label className={clsx(css.labelForm)}>
+            <span className={clsx(css.labelSpan)}>Number</span>
+            <Field
+              className={clsx(css.labelInput)}
+              type="tel"
+              name="number"
+              placeholder="123-45-67"
+            />
+            <ErrorMessage component="p" name="number" />
+          </label>
+          <button className={clsx(css.formButton)} type="submit">
+            Add new contact
+          </button>
+        </Form>
+      </Formik>
+      <Toaster position="top-right" reverseOrder={false} />
+    </>
   );
 };
 
