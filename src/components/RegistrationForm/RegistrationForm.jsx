@@ -24,7 +24,6 @@ const mailBoxSchema = Yup.object().shape({
 const RegistrationForm = () => {
   const dispatch = useDispatch();
   const handleSubmit = (values, actions) => {
-    console.log(values);
     dispatch(apiRegister(values));
     actions.resetForm();
   };
@@ -67,7 +66,7 @@ const RegistrationForm = () => {
           <ErrorMessage component="p" name="password" />
         </label>
         <button className={clsx(css.formButton)} type="submit">
-          Add new contact
+          Register
         </button>
       </Form>
     </Formik>

@@ -12,16 +12,12 @@ export const setToken = (token) => {
 export const clearToken = () =>
   (instance.defaults.headers.common.Authorization = "");
 
-export const apiRegister = createAsyncThunk(
+export const register = createAsyncThunk(
   "auth/register",
   async (formData, thunkApi) => {
     try {
       const { data } = await instance.post("/users/signup", formData);
-      console.log("REGISTER data: ", data);
-      // data => { user: { name: "dwda", email: "wdadwd@mail.com"} , token: "some token"}
       setToken(data.token);
-      console.log(data.token);
-      console.log(data);
       return data;
     } catch (e) {
       return thunkApi.rejectWithValue(e.message);
@@ -29,18 +25,12 @@ export const apiRegister = createAsyncThunk(
   }
 );
 
-export const apiLogin = createAsyncThunk(
+export const login = createAsyncThunk(
   "auth/login",
   async (formData, thunkApi) => {
-    console.log(instance.defaults.headers.common.Authorization);
     try {
       const { data } = await instance.post("/users/login", formData);
-      console.log("LOGIN data: ", data);
-      // data => { user: { name: "dwda", email: "wdadwd@mail.com"} , token: "some token"}
       setToken(data.token);
-      console.log(data.token);
-      console.log(data);
-      console.log(instance.defaults.headers.common.Authorization);
       return data;
     } catch (e) {
       return thunkApi.rejectWithValue(e.message);
@@ -48,7 +38,7 @@ export const apiLogin = createAsyncThunk(
   }
 );
 
-export const apiRefreshUser = createAsyncThunk(
+export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkApi) => {
     try {
@@ -57,7 +47,6 @@ export const apiRefreshUser = createAsyncThunk(
 
       setToken(token);
       const { data } = await instance.get("/users/current");
-      console.log("REFRESH data: ", data);
 
       return data;
     } catch (e) {
@@ -66,16 +55,13 @@ export const apiRefreshUser = createAsyncThunk(
   }
 );
 
-export const apiLogout = createAsyncThunk(
-  "auth/logout",
-  async (_, thunkApi) => {
-    try {
-      await instance.post("/users/logout");
-      clearToken();
+export const logout = createAsyncThunk("auth/logout", async (_, thunkApi) => {
+  try {
+    await instance.post("/users/logout");
+    clearToken();
 
-      return;
-    } catch (e) {
-      return thunkApi.rejectWithValue(e.message);
-    }
+    return;
+  } catch (e) {
+    return thunkApi.rejectWithValue(e.message);
   }
-);
+});

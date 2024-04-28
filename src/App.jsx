@@ -1,12 +1,12 @@
 import { lazy, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchContacts } from "./redux/contacts/operations";
 import { Route, Routes } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
-
 import Layout from "./components/Layout/Layout";
+import { apiRefreshUser } from "./redux/auth/operations";
+
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const RegistrationPage = lazy(() =>
   import("./pages/RegistrationPage/RegistrationPage")
@@ -18,6 +18,11 @@ const NotFoudPage = lazy(() => import("./pages/NotFoudPage/NotFoudPage"));
 import "./App.css";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(apiRefreshUser());
+  }, [dispatch]);
   return (
     <Layout>
       <Routes>
@@ -28,10 +33,6 @@ function App() {
             <RestrictedRoute>
               <RegistrationPage />
             </RestrictedRoute>
-            // <RestrictedRoute
-            //   redirectTo="/contacts"
-            //   component={<RegistrationPage />}
-            // />
           }
         />
         <Route
@@ -40,7 +41,6 @@ function App() {
             <RestrictedRoute>
               <LoginPage />
             </RestrictedRoute>
-            // <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
           }
         />
         <Route
@@ -49,7 +49,6 @@ function App() {
             <PrivateRoute>
               <ContactsPage />
             </PrivateRoute>
-            // <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
           }
         />
         <Route path="*" element={<NotFoudPage />} />
