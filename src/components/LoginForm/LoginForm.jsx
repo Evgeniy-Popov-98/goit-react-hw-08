@@ -10,21 +10,16 @@ import css from "./LoginForm.module.css";
 const FORM_INITIAL_VALUES = { name: "", password: "" };
 
 const mailBoxSchema = Yup.object().shape({
-  name: Yup.string()
-    .required("Email address is required!")
-    .min(3, "Your contact name must be more than 3 characters!")
-    .max(50, `Your contact name must be less than 50 characters!`),
-  number: Yup.string()
-    .required("Contact number is required!")
-    .min(3, "Your contact number must be more than 3 characters!")
-    .matches(
-      /^\d{3}-\d{2}-\d{2}$/,
-      `Invalid phone number format! Use "-", for example 123-45-67`
-    ),
+  email: Yup.string()
+    .email("Enter a correct email!")
+    .required("Enter your email!"),
+  password: Yup.string()
+    .min(8, "The password must contain at least 8 characters!")
+    .required("Enter password!"),
 });
 
 const LoginForm = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); //!!!!!!!!
 
   const onAddContact = (values, actions) => {
     dispatch(addContact(values));
@@ -43,11 +38,11 @@ const LoginForm = () => {
           <span className={clsx(css.labelSpan)}>Name</span>
           <Field
             className={clsx(css.labelInput)}
-            type="text"
-            name="name"
-            placeholder="Your name"
+            type="email"
+            name="email"
+            placeholder="Your email"
           />
-          <ErrorMessage component="p" name="name" />
+          <ErrorMessage component="p" name="email" />
         </label>
         <label className={clsx(css.labelForm)}>
           <span className={clsx(css.labelSpan)}>Password</span>
@@ -60,7 +55,7 @@ const LoginForm = () => {
           <ErrorMessage component="p" name="password" />
         </label>
         <button className={clsx(css.formButton)} type="submit">
-          Add new contact
+          Log In
         </button>
       </Form>
     </Formik>

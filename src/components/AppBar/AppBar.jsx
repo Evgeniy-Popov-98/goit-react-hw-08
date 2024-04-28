@@ -6,8 +6,8 @@ import clsx from "clsx";
 import style from "./AppBar.module.css";
 
 export const AppBar = () => {
-  const isLoggedIn = true;
-  //   const isLoggedIn = false;
+  //   const isLoggedIn = true;
+  const isLoggedIn = false;
 
   return (
     <header className={clsx(style.header)}>
