@@ -24,6 +24,7 @@ const mailBoxSchema = Yup.object().shape({
 const RegistrationForm = () => {
   const dispatch = useDispatch();
   const handleSubmit = (values, actions) => {
+    console.log(values);
     dispatch(apiRegister(values));
     actions.resetForm();
   };

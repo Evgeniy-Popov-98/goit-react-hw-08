@@ -1,5 +1,5 @@
 import { lazy, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchContacts } from "./redux/contacts/operations";
 import { Route, Routes } from "react-router-dom";
 
@@ -18,11 +18,6 @@ const NotFoudPage = lazy(() => import("./pages/NotFoudPage/NotFoudPage"));
 import "./App.css";
 
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
   return (
     <Layout>
       <Routes>
@@ -30,9 +25,9 @@ function App() {
         <Route
           path="/register"
           element={
-            // <RestrictedRoute>
-            <RegistrationPage />
-            // </RestrictedRoute>
+            <RestrictedRoute>
+              <RegistrationPage />
+            </RestrictedRoute>
             // <RestrictedRoute
             //   redirectTo="/contacts"
             //   component={<RegistrationPage />}
@@ -42,18 +37,18 @@ function App() {
         <Route
           path="/login"
           element={
-            // <RestrictedRoute>
-            <LoginPage />
-            // </RestrictedRoute>
+            <RestrictedRoute>
+              <LoginPage />
+            </RestrictedRoute>
             // <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
           }
         />
         <Route
           path="/contacts"
           element={
-            // <RestrictedRoute>
-            <ContactsPage />
-            // </RestrictedRoute>
+            <PrivateRoute>
+              <ContactsPage />
+            </PrivateRoute>
             // <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
           }
         />

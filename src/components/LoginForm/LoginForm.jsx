@@ -7,7 +7,7 @@ import { apiLogin } from "../../redux/auth/operations";
 import clsx from "clsx";
 import css from "./LoginForm.module.css";
 
-const FORM_INITIAL_VALUES = { name: "", password: "" };
+const FORM_INITIAL_VALUES = { email: "", password: "" };
 
 const mailBoxSchema = Yup.object().shape({
   email: Yup.string()
@@ -21,6 +21,7 @@ const mailBoxSchema = Yup.object().shape({
 const LoginForm = () => {
   const dispatch = useDispatch();
   const handleSubmit = (values, actions) => {
+    console.log(values);
     dispatch(apiLogin(values));
     actions.resetForm();
   };
@@ -33,7 +34,7 @@ const LoginForm = () => {
     >
       <Form className={clsx(css.boxForm)}>
         <label className={clsx(css.labelForm)}>
-          <span className={clsx(css.labelSpan)}>Name</span>
+          <span className={clsx(css.labelSpan)}>Email</span>
           <Field
             className={clsx(css.labelInput)}
             type="email"
