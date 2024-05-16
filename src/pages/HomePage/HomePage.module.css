@@ -2,3 +2,26 @@
   margin: 30px 0;
   padding: 0 20px;
 }
+
+.nameBookSpan {
+  font-size: 26px;
+  text-decoration: underline;
+}
+
+.skilsContainer {
+  display: flex;
+  flex-direction: row;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.skilBox {
+  width: 350px;
+  height: 100px;
+  padding: 20px;
+  border: 1px solid #fff;
+  border-radius: 16px;
+}
